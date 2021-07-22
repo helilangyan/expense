@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.enterprise.menu.dao.MenuMapper">
+
+    <delete id="del" parameterType="java.lang.Long">
+        delete from bus_enterprise_menu where id = #{id}
+    </delete>
+
+    <delete id="dels">
+        delete from bus_enterprise_menu where id in
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findByAll" resultType="bht.expense.enterprise.menu.entity.MenuEntity">
+        select * from bus_enterprise_menu
+    </select>
+
+</mapper>

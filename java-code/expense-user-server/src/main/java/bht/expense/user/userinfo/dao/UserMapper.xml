@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.user.userinfo.dao.UserMapper">
+
+    <delete id="del" parameterType="String">
+        delete from bus_user where id = #{id}
+    </delete>
+
+    <delete id="dels">
+        delete from bus_user where id in
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findByAll" resultType="bht.expense.user.userinfo.entity.UserEntity">
+        select * from bus_user
+    </select>
+
+    <update id="resetPassword" parameterType="String">
+        update bus_user set password='$2a$10$KYr.HJqpD6Ics5gDAxEG2e/ER8OiKvP6JNecZse5HzoNeEVJer/rO' where id = #{userId}
+    </update>
+
+    <update id="updatePassword">
+        update bus_user set password = #{password} where id = #{id}
+    </update>
+
+    <select id="findByAccount" parameterType="String" resultType="bht.expense.user.userinfo.entity.UserEntity">
+        select * from bus_user where phone = #{account} or email = #{account}
+    </select>
+
+    <select id="checkAccount" resultType="java.lang.Long">
+        select count(*) from bus_user where phone = #{account}
+    </select>
+
+    <update id="updateUsername">
+        update bus_user set first_name = #{firstName} , last_name = #{lastName} where id = #{id}
+    </update>
+
+    <update id="updatePhone">
+        update bus_user set phone = #{phone} where id = #{id}
+    </update>
+
+    <update id="updateEmail">
+        update bus_user set email = #{email} where id = #{id}
+    </update>
+
+</mapper>

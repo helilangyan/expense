@@ -1,0 +1,74 @@
+
+
+.heardBox{
+    width: 100%;
+    background-color: #fff;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px;
+
+}
+
+.contentBox{
+    /*padding: 15px;*/
+}
+
+.content{
+    background-color: #fff;
+    padding: 10px;
+    height: calc(100vh - 130px);
+}
+
+.content .ant-tabs-content{
+    position: relative;
+}
+
+/* .contentTitle{
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 2px;
+} */
+.departmentTitle{
+    border-bottom: 1px solid #c4cdd5;
+    border-right: 1px solid #c4cdd5;
+    font-size: 18px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.departmentContent{
+    padding: 10px;
+}
+
+.treeTitle{
+    /*height: 30px;*/
+    /*line-height: 30px;*/
+    box-sizing: border-box;
+}
+
+.treeTitle:hover .treeBtn{
+    opacity: 1;
+}
+
+.treeBtn{
+    display: inline-block;
+    opacity: 0;
+}
+
+.departmentContent{
+    height: calc(100vh - 250px);
+    border-right: 1px solid #c4cdd5;
+    overflow-y: auto;
+}
+
+.departmentContent .ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{
+   color: #0085ff;
+    background-color: #fff;
+}
+
+.departmentAdd{
+    box-sizing: border-box;
+    border-top: 1px solid #c4cdd5;
+    border-right: 1px solid #c4cdd5;
+    padding: 10px;
+}

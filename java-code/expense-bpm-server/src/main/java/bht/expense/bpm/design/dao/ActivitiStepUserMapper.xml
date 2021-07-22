@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bht.expense.bpm.design.dao.ActivitiStepUserMapper">
+
+    <resultMap id="BaseResultMap" type="bht.expense.bpm.design.entity.ActivitiStepUser">
+        <!--@mbg.generated-->
+        <!--@Table hrms_activiti_step_user-->
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="step_id" jdbcType="VARCHAR" property="stepId"/>
+        <result column="operator_name" jdbcType="VARCHAR" property="operatorName"/>
+        <result column="operator_id" jdbcType="VARCHAR" property="operatorId"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="updator" jdbcType="VARCHAR" property="updator"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, step_id, operator_name, operator_id, `type`, `status`, update_time, updator
+    </sql>
+    <select id="selectByStepid" resultMap="BaseResultMap">
+        select * from bus_activiti_step_user u where u.step_id = #{stepId,jdbcType=VARCHAR} and u.status = 1
+    </select>
+    <update id="logicDel">
+        update bus_activiti_step_user u set u.status= 0 where u.step_id = #{stepId,jdbcType=VARCHAR}
+    </update>
+</mapper>

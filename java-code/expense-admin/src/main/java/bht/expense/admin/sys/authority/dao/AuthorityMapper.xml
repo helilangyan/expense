@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.admin.sys.authority.dao.AuthorityMapper">
+
+    <delete id="del" parameterType="String">
+        delete from sys_authority where id = #{id}
+    </delete>
+
+    <delete id="dels">
+        delete from sys_authority where id in
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findByAll" resultType="bht.expense.admin.sys.authority.entity.AuthorityEntity">
+        select * from sys_authority
+    </select>
+
+
+
+</mapper>

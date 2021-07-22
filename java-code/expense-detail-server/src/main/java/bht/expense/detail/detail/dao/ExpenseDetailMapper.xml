@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.detail.detail.dao.ExpenseDetailMapper">
+
+    <select id="findByUserIdAndEnterpriseId" resultType="bht.expense.detail.detail.dto.ExpenseDetailListDto">
+        select t1.* , t3.label_name tags_name, t4.classify_name expense_type_name
+        from bus_expense_detail t1
+        left join bus_enterprise_strategy_label t3 on t3.id = t1.tags
+        left join bus_enterprise_strategy_classify t4 on t4.id = t1.expense_type
+        where t1.user_id = #{userId} and t1.enterprise_id = #{enterpriseId}
+        <if test="expenseType !=null and expenseType != '' ">and t1.expense_type = #{expenseType}</if>
+        <if test="tags !=null and tags != '' ">and t1.tags = #{tags}</if>
+        <if test="startTime !=null and startTime != '' "> and create_time <![CDATA[>=]]> #{startTime} </if>
+        <if test="endTime !=null and endTime != '' "> and create_time <![CDATA[<=]]> #{endTime} </if>
+        <if test="expenseName !=null and expenseName != '' "> and t1.expense_name like '%${expenseName}%'</if>
+        order by create_time desc
+    </select>
+
+    <delete id="delete" >
+        delete from bus_expense_detail where id = #{id}
+    </delete>
+
+    <select id="findById" resultType="bht.expense.detail.detail.dto.ExpenseDetailInfoDto">
+        select t1.*,t2.project_name
+        from bus_expense_detail t1 left join bus_project t2 on t1.project_id = t2.id
+        where t1.id = #{id}
+    </select>
+
+</mapper>

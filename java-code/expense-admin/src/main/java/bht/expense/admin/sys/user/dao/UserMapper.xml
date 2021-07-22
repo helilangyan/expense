@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.admin.sys.user.dao.UserMapper">
+
+    <select id="selectUserByUserName" parameterType="String" resultType="bht.expense.admin.sys.user.entity.UserEntity">
+        select * from sys_user where  username = #{username} limit 1
+    </select>
+
+    <delete id="del" parameterType="String">
+        delete from sys_user where id = #{id}
+    </delete>
+
+    <delete id="dels">
+        delete from sys_user where id in
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="resetPassword" parameterType="String">
+        update sys_user set password='$2a$10$KYr.HJqpD6Ics5gDAxEG2e/ER8OiKvP6JNecZse5HzoNeEVJer/rO' where id = #{userId}
+    </update>
+
+    <update id="updataPassword">
+        update sys_user set password = #{password} where username = #{username}
+    </update>
+
+    <update id="operationStatus">
+        update sys_user set status = #{status} where id = #{userId}
+    </update>
+
+    <select id="findByAll" resultType="bht.expense.admin.sys.user.entity.UserEntity">
+        select * from sys_user
+        <where>
+            <if test="username != null and username != '' "> and username like '%${username}%'</if>
+            <if test="status != null and status != '' "> and status = #{status}</if>
+        </where>
+    </select>
+
+
+    <select id="findResourceByUserId" resultType="bht.expense.admin.sys.resource.entity.ResourceEntity">
+        select * from sys_resource where  id in (
+        select resource_id from sys_authority_resource where authority_id in (
+        select authority_id from sys_role_authority where role_id in
+        (select role_id from sys_user_role where user_id=#{userId})
+        )
+        )
+    </select>
+
+</mapper>

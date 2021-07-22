@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.enterprise.strategy.dao.StrategyUserMapper">
+
+    <select id="findByUserIdAndEnterpriseIdToClassify" resultType="bht.expense.enterprise.strategy.detail.classify.entity.StrategyClassifyEntity">
+        select t2.* from bus_enterprise_strategy_user t1 , bus_enterprise_strategy_classify t2
+        where t1.strategy_id = t2.strategy_id and t1.user_id = #{userId} and t1.enterprise_id = #{enterpriseId} and t2.classify_status = '1'
+    </select>
+
+    <select id="findByUserIdAndEnterpriseIdToLabel" resultType="bht.expense.enterprise.strategy.detail.label.entity.StrategyLabelEntity">
+        select t2.* from bus_enterprise_strategy_user t1 , bus_enterprise_strategy_label t2
+        where t1.strategy_id = t2.strategy_id and t1.user_id = #{userId} and t1.enterprise_id = #{enterpriseId} and t2.status ='1'
+    </select>
+
+    <select id="findByUserIdAndEnterpriseIdToVehicle" resultType="bht.expense.enterprise.strategy.detail.vehicle.entity.StrategyVehicleEntity">
+        select t2.* from bus_enterprise_strategy_user t1 , bus_enterprise_strategy_vehicle t2
+        where t1.strategy_id = t2.strategy_id and t1.user_id = #{userId} and t1.enterprise_id = #{enterpriseId} and t2.status ='1'
+    </select>
+
+    <select id="findByUserIdAndEnterpriseIdToBasic" resultType="bht.expense.enterprise.strategy.detail.basic.entity.StrategyBasicEntity">
+        select * from bus_enterprise_strategy_user t1 , bus_enterprise_strategy_basic t2
+        where t1.strategy_id = t2.strategy_id and t1.user_id = #{userId} and t1.enterprise_id = #{enterpriseId}
+    </select>
+
+</mapper>

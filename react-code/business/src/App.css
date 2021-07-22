@@ -1,0 +1,308 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial Normal', 'Arial', sans-serif;
+    /* background-color:#F0F2F5 ; */
+}
+
+p {
+    margin: 0;
+}
+
+/* 网页最小宽度 */
+#page {
+    min-width: 1024px;
+}
+
+/*HeaderBar*/
+.trigger {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 46px !important;
+    cursor: pointer;
+    height: 100%;
+    width: 50px;
+    box-sizing: border-box;
+    border-top: 4px solid #2da9fa;
+}
+
+.trigger:hover {
+    /*color: #1890ff;*/
+    border-top: 4px solid #fff;
+}
+
+.headTime {
+    position: absolute;
+    left: 45%;
+    top: 0;
+}
+
+.header-ul {
+    display: flex;
+    width: 400px;
+}
+
+.header-ul li {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.header-ul>li img {
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+}
+
+.menu {
+    line-height: 2em;
+    padding: 0 10px;
+}
+
+.menu-group li {
+    padding: 0 24px;
+    line-height: 2em;
+}
+
+.ant-menu-vertical > .ant-menu-item, .ant-menu-vertical-left > .ant-menu-item, .ant-menu-vertical-right > .ant-menu-item, .ant-menu-inline > .ant-menu-item, .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title, .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title{
+    height: 50px;
+    line-height: 50px;
+}
+
+/* contentMain */
+.mainWrapper {
+    position: relative;
+    height: calc(100vh - 110px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.headBox {
+    width: 100%;
+    background-color: #fff;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+}
+
+/* .headBox h3 {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-weight: 600;
+} */
+.headBox .ant-tabs-nav{
+    margin-bottom: 4px;
+}
+
+.headBox .contentBox {
+    margin-top: 17px;
+    max-height: 800px;
+    position: relative;
+    height: calc(100vh - 185px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 15px;
+}
+
+/* .headBox .contentWrap {
+    margin-top: 17px;
+    height: calc(100vh - 160px);
+    overflow: scroll;
+} */
+
+.contentTitle {
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 2px;
+}
+
+/* 切换企业列表 */
+.myEnterList {
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.myEnterList .ant-list-item {
+    width: 143px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.myEnterList .logo {
+    width: 143px;
+    height: 122px;
+    line-height: 122px;
+    border: 1px solid #ddd;
+}
+
+.myEnterList .checked .logo {
+    border: 1px solid #0085FF;
+}
+
+.myEnterList .logo img {
+    width: 95px;
+}
+
+.myEnterList .name {
+    margin: 15px 0 10px;
+}
+
+.myEnterList .check {
+    background-color: #0085FF;
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    right: -21px;
+    top: -21px;
+    transform: rotate(45deg);
+    display: none;
+}
+
+.myEnterList .checked .check {
+    display: block;
+}
+
+.myEnterList .checked .check .anticon {
+    position: absolute;
+    color: #fff;
+    right: 15px;
+    top: 28px;
+    z-index: 1;
+    font-size: 12px;
+    transform: rotate(-45deg)
+}
+
+#page .cardItem {
+    margin-bottom: 10px;
+    border-radius: 3px;
+    line-height: 2em;
+}
+
+#page .card-ul {
+    list-style: inside circle;
+}
+
+/*GalleryDemo*/
+.aspect {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    overflow: hidden;
+}
+
+.aspect--1x2 {
+    padding-bottom: calc(112.5% + 8px);
+}
+
+.aspect--1x1 {
+    padding-bottom: 56.25%;
+    /*padding的百分比是按父级的width计算的*/
+}
+
+.aspect--2x1 {
+    padding-bottom: 28.125%;
+}
+
+.aspect__inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.vertical-center-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vertical-center-modal .ant-modal {
+    top: 0;
+}
+
+/*美化webkit内核滚动条*/
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(221, 221, 221, 0.52);
+    border-radius: 5px;
+}
+
+/*更改antd的primary button样式*/
+/* .ant-btn-primary{
+    background: #36bafb;
+    border-color: #36bafb;
+    border-radius: 5px;
+} */
+.ant-btn {
+    border-radius: 5px;
+}
+
+input.large {
+    height: 42px;
+}
+
+/* 彩色按钮 */
+.color-btn{
+    color:#fff;
+}
+.btn-success{
+    background-color: #08B365;
+    border-color: #08B365;
+}
+.btn-success:hover{
+    background-color: #1FBD75;
+    border-color: #1FBD75;
+}
+.btn-success:focus{
+    background-color: #1FBD75;
+    border-color: #1FBD75;
+}
+.btn-danger{
+    background-color: #F33E2B;
+    border-color: #F33E2B;
+}
+.btn-danger:hover{
+    background-color: #ff5140;
+    border-color: #ff5140;
+}
+.btn-danger:focus{
+    background-color: #ff5140;
+    border-color: #ff5140;
+}
+.btn-purple{
+    background-color: #D21AFF;
+    border-color: #D21AFF;
+}
+.btn-purple:hover{
+    background-color: #D83CFF;
+    border-color: #D83CFF;
+}
+.btn-purple:focus{
+    background-color: #D83CFF;
+    border-color: #D83CFF;
+}
+.btn-warning{
+    background-color: #E6A23C;
+    border-color: #E6A23C;
+}
+.btn-warning:hover{
+    background-color: #E6A544;
+    border-color: #E6A544;
+}
+.btn-warning:focus{
+    background-color: #E6A544;
+    border-color: #E6A544;
+}

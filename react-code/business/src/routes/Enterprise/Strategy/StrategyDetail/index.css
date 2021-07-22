@@ -1,0 +1,129 @@
+/* 个人信息 */
+.user-info .ant-form-item-control-input-content{
+  width: 320px;
+}
+.user-info .ant-form-item-control-input-content input{
+  width: 62%;
+}
+.user-info .ant-form-item-control-input .ant-btn-text{
+  color: #0085FF;
+}
+
+/* 头像 */
+.avatar-up{
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.avatar-up .ant-avatar{
+  position: absolute;
+  top:0;
+}
+.avatar-up .ant-upload-picture-card-wrapper{
+  position: absolute;
+  top:0;
+  z-index: 2;
+}
+
+/* 银行卡 */
+.cardList li.cardItem{
+  height: 73px;
+  width: 100%;
+  background-color:#3786CD ;
+  border-radius: 10px;
+  border:1px dashed #ddd;
+  color: #fff;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+.cardList li .list-info{
+  display: flex;
+  align-items: center;
+}
+.cardList .addCard{
+  height: 73px;
+  background-color:#F3F3F3 ;
+  border-radius: 10px;
+  border:1px dashed #ddd;
+  color: #0085FF;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 73px;
+  text-align: center;
+}
+.cardList li .defaultCard{
+  width: 70px;
+  height: 28px;
+  line-height: 28px;
+  background-color: #fff;
+  border-radius: 5px;
+  color:#F77218;
+  text-align: center;
+  margin-left: 50px;
+}
+.cardList li span{
+  display: block;
+  line-height: 30px;
+}
+.cardList li span.accountNum{
+  font-size: 16px;
+}
+.cardList li .tooltip{
+  color: #fff;
+}
+.cardList li .tooltip button{
+  color: #fff;
+}
+
+/* 我的企业 */
+.enterList .ant-list-item{
+  width: 143px;
+  text-align: center;
+  cursor: pointer;
+}
+.enterList .ant-list-item .logoBox{
+  width: 143px;
+  height: 100px; 
+  border: 1px solid #ddd;
+}
+.enterList .ant-list-item .logoBox img{
+  width: 95px;
+  display: inline-block;
+}
+.enterList .ant-list-item .enterName{
+  height: 22px;
+  margin: 15px 0 10px;
+}
+.enterList .ant-list-item .veri{
+  background-color: #F2F2F2;
+  width: 69px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  margin:0 36px;
+  color:#666;
+  border-radius: 3px;
+}
+.enterList .ant-list-item .veried{
+  background-color: #0085FF;
+  color:#fff;
+}
+/* 企业详情 */
+.itemlogo{
+  width: 143px;
+  height: 118px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.itemlogo img{
+  width: 116px;
+}
+
+/* 我的企业 */
+.selectType .note,.g-note{
+  width: 300px;
+  font-size: 12px;
+  color: #999;
+}
+
+

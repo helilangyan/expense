@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/expense-admin/expense-admin.iml" filepath="$PROJECT_DIR$/expense-admin/expense-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-apply-server/expense-apply-server.iml" filepath="$PROJECT_DIR$/expense-apply-server/expense-apply-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-bpm-server/expense-bpm-server.iml" filepath="$PROJECT_DIR$/expense-bpm-server/expense-bpm-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-business/expense-business.iml" filepath="$PROJECT_DIR$/expense-business/expense-business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-detail-server/expense-detail-server.iml" filepath="$PROJECT_DIR$/expense-detail-server/expense-detail-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-email-server/expense-email-server.iml" filepath="$PROJECT_DIR$/expense-email-server/expense-email-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-enterprise-server/expense-enterprise-server.iml" filepath="$PROJECT_DIR$/expense-enterprise-server/expense-enterprise-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-file-server/expense-file-server.iml" filepath="$PROJECT_DIR$/expense-file-server/expense-file-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-gateway-server/expense-gateway-server.iml" filepath="$PROJECT_DIR$/expense-gateway-server/expense-gateway-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-report-server/expense-report-server.iml" filepath="$PROJECT_DIR$/expense-report-server/expense-report-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-sms-server/expense-sms-server.iml" filepath="$PROJECT_DIR$/expense-sms-server/expense-sms-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-user-server/expense-user-server.iml" filepath="$PROJECT_DIR$/expense-user-server/expense-user-server.iml" />
+    </modules>
+  </component>
+</project>

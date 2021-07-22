@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.admin.sys.authority.dao.AuthorityResourceMapper">
+    <select id="findByAuthorityId" parameterType="String" resultType="bht.expense.admin.sys.authority.entity.AuthorityResourceEntity">
+       select * from sys_authority_resource where authority_id = #{authorityId}
+    </select>
+
+    <delete id="deleteByAuthorityId" parameterType="String">
+        delete from sys_authority_resource where authority_id = #{authorityId}
+    </delete>
+</mapper>

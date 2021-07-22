@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.admin.sys.user.dao.UserRoleMapper">
+    <select id="findByUserId" parameterType="String" resultType="bht.expense.admin.sys.user.dto.UserRoleDto">
+        SELECT t1.id role_id , t1.role_name , t1.remark , t2.id user_role_id,t2.user_id
+        from sys_role t1 LEFT JOIN sys_user_role t2
+        on t1.id = t2.role_id and t2.user_id = #{userId}
+    </select>
+
+    <delete id="deleteByUserId" parameterType="String">
+        delete from sys_user_role where user_id = #{userId}
+    </delete>
+</mapper>

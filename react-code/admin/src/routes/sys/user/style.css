@@ -1,0 +1,15 @@
+.tableHead{
+    /*background-color: #fff;*/
+    padding: 10px;
+    border-radius: 5px;
+    border-bottom: 1px solid #eceff8;
+}
+
+.tableContent{
+    /*background-color: #fff;*/
+    padding: 10px;
+}
+
+.ant-form-item-label{
+    width:100px;
+}

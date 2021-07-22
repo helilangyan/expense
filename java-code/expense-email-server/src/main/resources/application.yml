@@ -1,0 +1,78 @@
+server:
+  port: 9006
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  max-http-header-size: 51200
+
+spring:
+  jackson:
+    time-zone: GMT+8
+  aop:
+    auto: true
+  application:
+    name: expense-email-server
+  datasource:
+    username: bht
+    password: yaoyiwen
+    url: jdbc:mysql://rm-bp1px3zf6kodk1817eo.mysql.rds.aliyuncs.com:3306/expense?userSSL=true&useUnicode=true&characterEncoding=UTF8
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      connection-timeout: 30000
+      maximum-pool-size: 20
+      max-lifetime: 1800000
+      minimum-idle: 5
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        server-addr: ${spring.cloud.nacos.server-addr}
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 200MB
+  mail:
+    host: smtp.163.com #发送邮件服务器
+    username: bht_llc@163.com #发送邮件的邮箱地址
+    password:  XSJZGFFSNMGTQGED #客户端授权码，不是邮箱密码，这个在qq邮箱设置里面自动生成的
+    properties.mail.smtp.port: 465 #端口号465或994
+    from: bht_llc@163.com # 发送邮件的地址，和上面username一致
+    default-encoding: UTF-8
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+    properties.mail.smtp.ssl.enable: true
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+
+mybatis-plus:
+  mapper-locations: classpath:bht/expense/**/*Mapper.xml
+  type-aliases-package: bht.expense
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+
+
+token:
+  header: Authorization
+  secret: (EMOK:)_$^11244^%$_(IS:)_@@++--(COOL:)_++++_.sds_(GUY:)
+  expireTime: 3600000
+
+logging:
+  config: classpath:logback-spring.xml

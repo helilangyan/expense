@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.detail.apply.copy.dao.ApplyCopyMapper">
+
+    <select id="toMyCopy" resultType="bht.expense.detail.apply.copy.dto.ApplyCopyDto">
+        select t1.* , concat(t2.first_name,'-',t2.last_name) as createUserName , concat(t3.first_name,'-',t3.last_name) as nextUserName
+        from bus_activiti_bill t1 LEFT JOIN bus_user t2 on t1.creator = t2.id
+        LEFT JOIN bus_user t3 on t1.next_id = t3.id
+        ,bus_apply_copy t4 where t1.id = t4.bill_id and t4.copy_user_id = #{userId}
+    </select>
+
+</mapper>

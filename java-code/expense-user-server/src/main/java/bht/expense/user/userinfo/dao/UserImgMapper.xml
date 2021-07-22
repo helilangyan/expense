@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.user.userinfo.dao.UserImgMapper">
+
+    <select id="findByUserId" resultType="bht.expense.user.userinfo.entity.UserImgEntity">
+        select * from bus_user_img where user_id = #{userId}
+    </select>
+
+</mapper>

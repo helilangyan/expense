@@ -1,0 +1,22 @@
+
+
+
+
+/* .contentBox{
+    padding: 15px;
+} */
+
+.content{
+    background-color: #fff;
+    padding: 10px;
+}
+
+.content .ant-tabs-content{
+    position: relative;
+}
+
+/* .contentTitle{
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 2px;
+} */

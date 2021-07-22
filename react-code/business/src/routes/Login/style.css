@@ -1,0 +1,236 @@
+#login-page{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:#F2F5F7;
+    z-index: 99;
+}
+
+#login-page .container{
+    position: fixed;
+    width: 360px;
+    height: 550px;
+    /*padding: 30px;*/
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 0 10px #bdbdbd;
+}
+#login-page .box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 1s;
+}
+#login-page .showBox{
+    transform:rotateY(0deg);
+}
+#login-page .hiddenBox{
+    /* transform:rotateY(180deg); */
+    display: none;
+}
+
+#login-page .title{
+    height: 60px;
+    line-height: 60px;
+    color:#333;
+    font-size: 20px;
+    margin-bottom: 0;
+    text-align: center;
+}
+#login-page .socialBox{
+    color:#333;
+    padding:0px 55px 20px;
+    font-size: 13px;
+    margin-bottom: 0;
+    text-align: center;
+    border-bottom: 1px solid #0094FF;
+}
+#login-page .socialBox ul{
+    display: flex;
+    justify-content:space-between;
+
+}
+#login-page .socialBox ul li{
+    width: 34px;
+    height: 34px;
+}
+#login-page .socialBox ul li img{
+    width: 100%;
+}
+#login-page .loginBox{
+    padding:0 30px;
+    /* position: relative; */
+}
+#login-page .veriCode{
+    position: relative;
+    /* top:15px; */
+}
+
+/* 注册 */
+#login-page .registerBox{
+    background-color: #fff;
+    padding:30px;
+}
+
+
+
+/* 覆盖antd样式 */
+#login-page .ant-tabs-tab{
+    height: 50px;
+    color:#9F9F9F;
+}
+#login-page .ant-tabs-ink-bar{
+    width: 10px !important;
+    height: 10px;
+    background-color: #0094FF;
+    border: 1px solid #0094FF;
+    transform:rotate(45deg);
+    top:-6px;
+    margin-left: 70px;
+}
+#login-page .ant-row.ant-form-item{
+    margin-bottom: 22px;
+    font-size: 14px !important;
+}
+#login-page .ant-input-affix-wrapper{
+    line-height: 2.3;
+    color:#C3C3C3
+}
+#login-page .loginBtn{
+    width:100%;
+    padding: 10px 50px;
+    height: 40px;
+    border: 2px solid #0085FF;
+    border-radius: 5px;
+    background: #0085FF;
+    font-size: 14px;
+    color: #fff;
+    transition: all .2s;
+}
+#login-page .loginBtn + span{
+    position: relative;
+    font-size: 14px;
+    color: #0085FF;
+    cursor: pointer;
+    float: right;
+    top:5px;
+}
+#login-page .bottom{
+    display: flex;
+    height: 42px;
+    justify-content: space-between;
+    align-items: center;
+}
+#login-page .capBtn{
+    background-color: #fff;
+    /* border:none; */
+    color:#0085FF;
+    width: 100%;
+    border-radius: 5px;
+    height: 99%;
+}
+#login-page .registerBtn{
+    color: #D3D7F7;
+}
+#login-page .registerBtn:hover{
+    color: #4FA1D9;
+    cursor: pointer;
+}
+#login-page .loginBtn:hover{
+    color: white;
+    background: #4FA1D9;
+    cursor: pointer;
+}
+#login-page label{
+    color: #9b9999;
+}
+#login-page .login-form-forgot{
+    float: right;
+}
+#login-page .footer{
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+}
+#login-page .footer span{
+    color: #F5222D;
+}
+
+
+/*覆盖antd的默认样式*/
+#login-page input{
+    /* color:#61BFFF; */
+    /* border:none; */
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+}
+#login-page input.large{
+    height: 42px;
+}
+#login-page .ant-input-group-addon{
+    background: transparent;
+    padding:0;
+    /* border: none; */
+    color: #fff;
+    opacity: 0.8;
+    height: 42px;
+    width: 70px;
+}
+
+/* #login-page .ant-input-group-addon ant-select-selection-item{
+    line-height: 42px;
+} */
+#login-page .ant-input-group-addon+input{
+    height: 42px;
+}
+#login-page .ant-input-group-addon .iconfont{
+    display: inline-block;
+    width: 30px;
+    transition: all .3s;
+    opacity: 0.6;
+}
+#login-page .ant-form-item{
+    margin-bottom: 10px;
+}
+#login-page .ant-form-explain{
+    position: absolute;
+    z-index: 99;
+    left:110%;
+    top:0;
+    height: 41px;
+    /*box-shadow: -2px 2px 2px rgba(0,0,0,.3);*/
+}
+.login-notification{
+    background: transparent;
+    border:1px solid #D3D7F7;
+    color:#D3D7F7;
+    width: 250px;
+    height: 80px;
+    float: right;
+    margin-right: 20px;
+}
+.login-notification .ant-notification-notice-message{
+    color:#D3D7F7;
+}
+.login-notification .ant-notification-notice-close{
+    color:#D3D7F7;
+}
+/*更改谷歌浏览器input背景*/
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active { */
+    /*延迟背景颜色载入*/
+    /* -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+} */

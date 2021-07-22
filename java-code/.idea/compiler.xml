@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="expense-sms" />
+        <module name="expense-file-server" />
+        <module name="expense-business" />
+        <module name="expense-email-server" />
+        <module name="expense-bpm-server" />
+        <module name="expense-apply-server" />
+        <module name="expense-admin" />
+        <module name="expense-report-server" />
+        <module name="expense-enterprise-server" />
+        <module name="expense-gateway-server" />
+        <module name="expense-detail-server" />
+        <module name="expense-sms-server" />
+        <module name="expense-user-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="expense-admin" target="1.8" />
+      <module name="expense-apply-server" target="1.8" />
+      <module name="expense-bpm-server" target="1.8" />
+      <module name="expense-business" target="1.8" />
+      <module name="expense-detail-server" target="1.8" />
+      <module name="expense-email-server" target="1.8" />
+      <module name="expense-enterprise-server" target="1.8" />
+      <module name="expense-file" target="1.8" />
+      <module name="expense-file-server" target="1.8" />
+      <module name="expense-gateway-server" target="1.8" />
+      <module name="expense-report-server" target="1.8" />
+      <module name="expense-sms" target="1.8" />
+      <module name="expense-sms-server" target="1.8" />
+      <module name="expense-user-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="expense-admin" options="-parameters" />
+      <module name="expense-apply-server" options="-parameters" />
+      <module name="expense-bpm-server" options="-parameters" />
+      <module name="expense-business" options="-parameters" />
+      <module name="expense-detail-server" options="-parameters" />
+      <module name="expense-email-server" options="-parameters" />
+      <module name="expense-enterprise-server" options="-parameters" />
+      <module name="expense-file" options="-parameters" />
+      <module name="expense-file-server" options="-parameters" />
+      <module name="expense-gateway-server" options="-parameters" />
+      <module name="expense-report-server" options="-parameters" />
+      <module name="expense-sms" options="-parameters" />
+      <module name="expense-sms-server" options="-parameters" />
+      <module name="expense-user-server" options="-parameters" />
+    </option>
+  </component>
+</project>

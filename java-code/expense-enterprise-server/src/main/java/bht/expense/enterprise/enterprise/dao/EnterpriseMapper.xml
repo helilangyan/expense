@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.enterprise.enterprise.dao.EnterpriseMapper">
+
+    <delete id="del" >
+        delete from bus_enterprise where id = #{id}
+    </delete>
+
+    <delete id="dels">
+        delete from bus_enterprise where id in
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findByAll" resultType="bht.expense.enterprise.enterprise.entity.EnterpriseEntity">
+        select * from bus_enterprise
+    </select>
+
+    <select id="findByUserId" resultType="bht.expense.enterprise.enterprise.entity.EnterpriseEntity">
+        select * from bus_enterprise where user_id = #{userId}
+    </select>
+
+    <select id="checkTaxCode" resultType="java.lang.Long">
+        select count(*) from bus_enterprise where tax_code = #{taxCode}
+        <if test="id != null and id != 0 "> and id != #{id}</if>
+    </select>
+
+    <update id="approve">
+        update bus_enterprise set status = #{status} where id = #{id}
+    </update>
+
+    <select id="findByInvitationCode" resultType="java.lang.Long">
+        select id from bus_enterprise where invitation_code = #{invitationCode}
+    </select>
+
+
+</mapper>

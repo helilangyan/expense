@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.enterprise.enterprise.dao.EnterpriseUserMapper">
+
+    <select id="findByUserId" resultType="bht.expense.enterprise.enterprise.dto.EnterpriseUserDto">
+        select t1.id , t1.enterprise_id , t1.user_id , t1.is_default , t2.enterprise_name , t2.file_id
+        from bus_enterprise_user t1 LEFT JOIN bus_enterprise t2 on t1.enterprise_id = t2.id
+        where t1.user_id = #{userId}
+    </select>
+
+    <select id="findByEnterpriseId" resultType="bht.expense.enterprise.enterprise.dto.EnterpriseUserDto">
+        SELECT t1.id , t2.id user_id , t2.phone , t2.email , t2.first_name , t2.last_name
+        from bus_enterprise_user t1 LEFT JOIN bus_user t2  on t1.user_id = t2.id
+        where t1.enterprise_id = #{enterpriseId}
+    </select>
+    
+    <update id="clearDefault">
+        update bus_enterprise_user set is_default = 0 where user_id = #{userId}
+    </update>
+
+    <update id="setDefault">
+        update bus_enterprise_user set is_default = 1 where id = #{id}
+    </update>
+
+
+    <select id="findById" resultType="bht.expense.enterprise.department.dto.DepartmentUserDto">
+        select t1.* ,  t2.department_name , t3.position_name , t4.role_name , (t5.first_name+" "+t5.last_name) superior_name
+        from bus_enterprise_user t1
+        left join bus_enterprise_department t2 on t2.id = t1.department_id
+        left join bus_enterprise_position t3 on t1.position_id = t3.id
+        left join bus_enterprise_role t4 on t4.id = t1.role_id
+        left join bus_user t5 on t5.id = t1.superior
+        where t1.id = #{id}
+    </select>
+</mapper>

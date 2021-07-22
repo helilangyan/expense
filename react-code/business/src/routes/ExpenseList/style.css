@@ -1,0 +1,242 @@
+/* .headBox{
+    width: 100%;
+    background-color: #fff;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+} */
+
+.contentBox{
+    max-height: 800px;
+    position: relative;
+    height: calc(100vh - 110px);
+    overflow-x: scroll;
+    padding-right: 15px;
+}
+.contentBox .timeBox{
+    font-weight: 600;
+    line-height: 30px;
+}
+.contentBox .ant-list-item{
+    padding:0;
+    border: none;
+}
+/* 去掉列表item的边框 */
+.contentBox .ant-list-split.ant-list-something-after-last-item .ant-spin-container > .ant-list-items > .ant-list-item:last-child{
+    border: none;
+}
+
+.contentList{
+    width: 100%;
+}
+
+.bizListItem{
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 15px 0;
+    box-sizing: border-box;
+    transition: ease 2s;
+    margin-bottom: 10px;
+}
+.bizListItem .warn{
+    color: #D81E06;
+    position: relative;
+    top:12px;
+    font-size: 16px;
+}
+.bizListItem h2.tit{
+    font-size: 16px;
+    line-height: 22.8px;
+    font-weight: 600;
+}
+.bizListItem .tit span {
+    font-size: 22px;
+    font-weight: 600;
+    color: #666;
+    vertical-align: -5px;
+}
+.bizListItem p.con {
+    color: #777;
+    height: 26px;
+    line-height: 26px;
+}
+.bizListItem p.con span{
+    color: #333;
+}
+.bizListItem p.focus span{
+    color: #0085FF;
+    cursor: pointer;
+}
+.bizListItem .del{
+    color: #D81E06;
+    font-size: 20px;
+    line-height: 20px;
+    opacity: 0;
+    visibility: hidden;
+}
+.bizListItem p.focus:hover{
+    font-weight: 600;
+}
+.bizListItem:hover .del{
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+
+/* 表单 */
+.greybg,.greybg input{
+    background-color: #F6F6F6;
+}
+.noborder-table{
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* 个人收支 */
+.contentBox.personBox .ant-list-items{
+    height: 730px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.perListItem{
+    background-color: #fff;
+    padding: 10px 15px 0;
+    box-sizing: border-box;
+    transition: ease 2s;
+    margin-bottom: 10px;
+    overflow: hidden;
+    min-width: 450px;
+    width: 520px;
+}
+.perListItem .ant-col{
+    height: 200px;
+}
+.perListItem h2.tit{
+    font-size: 16px;
+    line-height: 50px;
+    height: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.perListItem .tit span {
+    font-size: 22px;
+    font-weight: 600;
+    color: #666;
+    vertical-align: -5px;
+}
+.perListItem .tags{
+    height: 133px;
+    padding-top: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.perListItem p {
+    color: #777;
+    height: 30px;
+    line-height: 30px;
+}
+.perListItem p.amount {
+    font-size: 16px;
+}
+.perListItem p.con {
+    height: 30px;
+    line-height: 30px;
+}
+.perListItem p span{
+    color: #333;
+}
+.perListItem .mark{
+    width: 70px;
+    height: 70px;
+    transform:rotate(45deg);
+    background-color: #FF0000;
+    position: relative;
+    top: -45px;
+    right: -21px;
+}
+.perListItem .mark span{
+    color:#fff;
+    position: absolute;
+    bottom: 5px;
+    left: 24px;
+    font-size: 12px;
+}
+.perListItem .del{
+    color: #D81E06;
+    font-size: 22px;
+    opacity: 0;
+    visibility: hidden;
+    position: relative;
+    bottom: -80px;
+}
+.perListItem:hover .del{
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+
+
+.choiceItem{
+    text-align: center;
+}
+
+.choiceItem p{
+    margin-top: 20px;
+}
+
+.choiceItem button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+}
+
+.choiceItem span{
+    font-size: 24px;
+}
+/* 过滤表单 */
+.filterItem .ant-form-item{
+    margin-bottom: 50px;
+}
+.filterItem .ant-select{
+    width:70%;
+}
+
+/* 复杂表单 */
+.multiItem.ant-form-item{
+    margin-bottom: 0;
+}
+.multiItem.ant-form-item .ant-form-item-control-input-content{
+    display: flex;
+}
+
+/* 彩色按钮 */
+.color-btn{
+    color:#fff;
+}
+.btn-success{
+    background-color: #08B365;
+    border-color: #08B365;
+}
+.btn-success:hover{
+    background-color: #1FBD75;
+    border-color: #1FBD75;
+}
+.btn-danger{
+    background-color: #F33E2B;
+    border-color: #F33E2B;
+}
+.btn-danger:hover{
+    background-color: #ff5140;
+    border-color: #ff5140;
+}
+.btn-purple{
+    background-color: #D21AFF;
+    border-color: #D21AFF;
+}
+.btn-purple:hover{
+    background-color: #D83CFF;
+    border-color: #D83CFF;
+}

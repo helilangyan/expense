@@ -1,0 +1,25 @@
+.properties-panel{
+    width: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.allButton{
+    position: absolute;
+    left: 0;
+    top: 50px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+}
+
+.fontBtn{
+    margin: 0 20px;
+    /*padding: 0 10px ;*/
+    width: 50px;
+}
+
+.bjs-powered-by{
+    display: none;
+}

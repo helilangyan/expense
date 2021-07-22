@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bht.expense.bpm.design.dao.ActivitiStepMapper">
+
+    <resultMap id="BaseResultMap" type="bht.expense.bpm.design.entity.ActivitiStep">
+        <!--@mbg.generated-->
+        <!--@Table hrms_activiti_step-->
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="step_id" jdbcType="VARCHAR" property="stepId"/>
+        <result column="flow_id" jdbcType="VARCHAR" property="flowId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="key_" jdbcType="VARCHAR" property="key"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, step_id, flow_id, `name`, `key_`
+    </sql>
+
+
+    <select id="selectAllByFlowid" resultMap="BaseResultMap">
+        select * from bus_activiti_step s where s.flow_id = #{flowId,jdbcType=VARCHAR}
+    </select>
+</mapper>

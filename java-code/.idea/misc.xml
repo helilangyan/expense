@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../../../doc" />
+    <option name="OTHER_OPTIONS" value="-encoding utf-8 -charset utf-8" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/expense-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-email-server/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-file-server/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-sms-server/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-detail-server/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-apply-server/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-bpm-server/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-enterprise-server/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-report-server/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-business/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-user-server/pom.xml" />
+        <option value="$PROJECT_DIR$/expense-gateway-server/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="ThriftCompiler">
+    <compilers />
+  </component>
+</project>

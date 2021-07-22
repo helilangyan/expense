@@ -1,0 +1,53 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: expense-gateway-server
+  datasource:
+    username: bht
+    password: yaoyiwen
+    url: jdbc:mysql://rm-bp1px3zf6kodk1817eo.mysql.rds.aliyuncs.com:3306/expense?userSSL=true&useUnicode=true&characterEncoding=UTF8
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      connection-timeout: 30000
+      maximum-pool-size: 20
+      max-lifetime: 1800000
+      minimum-idle: 5
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        server-addr: ${spring.cloud.nacos.server-addr}
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      httpclient:
+        response-timeout: 5000
+        connect-timeout: 8000
+feign:
+  sentinel:
+    enabled: true
+
+mybatis-plus:
+  mapper-locations: classpath:bht/expense/gateway/**/*Mapper.xml
+  type-aliases-package: bht.expense.gateway
+  configuration:
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+token:
+  header: Authorization
+  secret: (EMOK:)_$^11244^%$_(IS:)_@@++--(COOL:)_++++_.sds_(GUY:)
+  expireTime: 3600000
+  ignore:
+    - /**/api-docs
+
+swagger:
+  enable: true

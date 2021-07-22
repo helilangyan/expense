@@ -1,0 +1,30 @@
+/* .contentBox{
+    max-height: 800px;
+    position: relative;
+    height: calc(100vh - 110px);
+    overflow-x: scroll;
+    padding-right: 15px;
+} */
+.titleStats .tit{
+    color:#666
+}
+.titleStats .count{
+    font-size: 18px;
+    font-weight: 600;
+}
+.content{
+    background-color: #fff;
+    padding: 10px 20px;
+}
+.Btn{
+    height: 25px;
+    line-height: 25px;
+    width: 70px;
+    text-align: center;
+    color:#fff;
+}
+.rnd-pl{
+    background-color: #0CA60B;
+    border-color: #0CA60B;
+}
+

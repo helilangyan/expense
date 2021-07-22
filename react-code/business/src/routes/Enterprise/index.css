@@ -1,0 +1,124 @@
+.content{
+  background-color: #fff;
+  padding: 10px 20px;
+}
+/* 企业信息 */
+.entInfo input{
+  height: 40px;
+  width: 300px;
+}
+.entInfo .isveri{
+  width: 128px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  background-color: #F2F2F2;
+  border-radius: 3px;
+  text-align: center;
+  color: #666;
+  /* font-size: 14px; */
+}
+.entInfo .isveri.veried{
+  background-color: #0085ff;
+  color: #fff;
+}
+.entInfo .verify{
+  color: #0085ff;
+  font-size: 14px;
+}
+.entInfo .logo{
+  border: 1px solid #D9D9D9;
+  text-align: center;
+  width: 300px;
+  display: inline-block;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+.entInfo .logo .ant-upload-select-picture-card{
+  margin:0;
+  background-color: #ffffff;
+  border:none;
+  width: 150px;
+  height: 150px;
+}
+.entInfo .logo img{
+  /* height: 200px;
+  width: 200px; */
+}
+.entInfo .note{
+  color:#999;
+  margin-left: 15px;
+}
+.entInfo .valiInput .ant-form-item-control-input{
+  width: 51%;
+}
+.entInfo .ant-form-item-with-help{
+  margin-bottom:24px
+}
+
+/* 连接设置 */
+.contentBox .card-item{
+  height: 180px;
+  position: relative;
+}
+.contentBox .card-item .ant-avatar{
+  width: 80px;
+  height: 80px;
+}
+.contentBox .card-item .ant-card-meta-title{
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.contentBox .card-item .card-btn{
+  color:#32B4C4;
+  border: 1px solid #32B4C4;
+  margin-top: 20px;
+}
+.contentBox .card-item .card-btn.turnedOn{
+  color:#fff;
+  background-color:#32B4C4 ;
+  border: 1px solid #32B4C4;
+  margin-top: 20px;
+}
+.contentBox .card-item .connect-status{
+  color:#0085FF;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  font-size: 15px;
+}
+.contentBox .card-item .connect-status.danger{
+  color:#FF0000;
+}
+/* service */
+.content .labelbox{
+  width: 72px;
+  background-color:#84D247 ;
+  color: #fff;
+  padding: 7px 20px;
+  border-radius: 3px;
+}
+.content .validtime{
+  font-size: 20px;
+  vertical-align: -2px;
+  font-weight: 600;
+  margin-right: 20px;
+}
+.form-mark{
+  font-size: 12px;
+  color:#999;
+}
+.sales-promotion span{
+  margin-right: 10px;
+}
+.sales-promotion span.num{
+  font-weight: 600;
+  font-size: 18px;
+  color:#ff0000
+}
+.sales-promotion span.normal{
+  text-decoration:line-through;
+}
+.sales-promotion span.discount{
+  color:#D81E06;
+}

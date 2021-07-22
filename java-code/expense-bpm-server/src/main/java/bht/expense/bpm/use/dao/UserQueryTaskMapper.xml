@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bht.expense.bpm.use.dao.UserQueryTaskMapper">
+    <select id="selectUserQueryTasks" resultType="bht.expense.bpm.use.dto.UserWaitHandTaskDto">
+        <if test="status != null and  status !='' ">
+            <if test="status == '1'.toString() ">
+                -- 待办
+                <include refid="waitHandSql"/>
+                <include refid="runningSqlCondition"/>
+                union
+                -- 已办
+                <include refid="doneSql"/>
+                <include refid="runningSqlCondition"/>
+                union
+                -- 待提交
+                <include refid="waitSubmitSql"/>
+                <include refid="runningSqlCondition"/>
+            </if>
+            <if test="status == '2'.toString() ">
+                -- 待办
+                <include refid="waitHandSql"/>
+                <include refid="suspendSqlCondition"/>
+                union
+                -- 已办
+                <include refid="doneSql"/>
+                <include refid="suspendSqlCondition"/>
+                union
+                -- 待提交
+                <include refid="waitSubmitSql"/>
+                <include refid="suspendSqlCondition"/>
+            </if>
+            <if test="status == '3'.toString() ">
+                -- 待提交
+                <include refid="waitSubmitSql"/>
+                <include refid="waitSubmitConditionSql"/>
+            </if>
+            <if test="status == '9'.toString() ">
+                -- 待办
+                <include refid="waitHandSql"/>
+                <include refid="finishedSqlCondition"/>
+                union
+                -- 已办
+                <include refid="doneSql"/>
+                <include refid="finishedSqlCondition"/>
+                union
+                -- 待提交
+                <include refid="waitSubmitSql"/>
+                <include refid="finishedSqlCondition"/>
+            </if>
+        </if>
+        <if test="status == null or  status =='' ">
+            -- 待办
+            <include refid="waitHandSql"/>
+            union
+            -- 已办
+            <include refid="doneSql"/>
+            union
+            -- 待提交
+            <include refid="waitSubmitSql"/>
+        </if>
+    </select>
+
+    <sql id="waitHandSql">
+        SELECT A.ID_ AS taskId,
+        A.ASSIGNEE_ AS nextUserid,
+        concat(su.first_name,'-',su.last_name) nextUsername,
+        hp.START_USER_ID_ initor,
+        concat(su1.first_name,'-',su1.last_name) initorName,
+        A.PROC_INST_ID_ instanceId,
+        hp.BUSINESS_KEY_ businessKey,
+        arp.KEY_,
+        A.NAME_ AS taskName,
+        hp.NAME_ billName,
+        a.SUSPENSION_STATE_,
+        case when isnull(hp.END_TIME_ ) then
+        case when a.SUSPENSION_STATE_=2 then 2 else 1 end
+        else 9 end status,
+        date_format(A.CREATE_TIME_, '%Y-%m-%d %H:%i:%s') AS arriveTime,
+        date_format(hp.START_TIME_, '%Y-%m-%d %H:%i:%s') AS startTime,
+        date_format(hp.END_TIME_, '%Y-%m-%d %H:%i:%s') AS endTime,
+        case when isnull(hp.END_TIME_) then
+        CONCAT(
+        FLOOR(
+        TIMESTAMPDIFF(SECOND,hp.START_TIME_,now()) / 86400
+        ),
+        '天',
+        TIMESTAMPDIFF(HOUR,hp.START_TIME_,now()) % 24,
+        '时',
+        TIMESTAMPDIFF(MINUTE,hp.START_TIME_,now()) % 60,
+        '分'
+        )
+        else
+        CONCAT(
+        FLOOR(
+        TIMESTAMPDIFF(SECOND,hp.START_TIME_,hp.END_TIME_) / 86400
+        ),
+        '天',
+        TIMESTAMPDIFF(HOUR,hp.START_TIME_,hp.END_TIME_) % 24,
+        '时',
+        TIMESTAMPDIFF(MINUTE,hp.START_TIME_,hp.END_TIME_) % 60,
+        '分'
+        )
+        end duration,
+        I.USER_ID_ CANDIDATE
+        FROM ACT_RU_TASK A
+        join act_hi_procinst hp on a.PROC_INST_ID_ = hp.PROC_INST_ID_
+        -- 关联业务表
+        join act_re_procdef arp on arp.ID_ = a.PROC_DEF_ID_
+        --join hrms_activiti_bill hac on hp.BUSINESS_KEY_ = hac.id
+        left join bus_user su on a.ASSIGNEE_ = su.id
+        left join bus_user su1 on hp.START_USER_ID_ = su1.id
+
+        LEFT JOIN (
+        SELECT DISTINCT * FROM (
+        SELECT TASK_ID_, USER_ID_
+        FROM ACT_RU_IDENTITYLINK I, ACT_RU_TASK T
+        WHERE TASK_ID_ IS NOT NULL
+        AND USER_ID_ IS NOT NULL
+        AND I.TASK_ID_ = T.ID_
+        AND T.ASSIGNEE_ IS NULL
+        AND TYPE_ = 'candidate'
+        UNION
+        SELECT TASK_ID_, R.USER_ID
+        FROM ACT_RU_IDENTITYLINK I,sys_user_role R,ACT_RU_TASK T
+        WHERE I.TASK_ID_ IS NOT NULL
+        AND I.GROUP_ID_ IS NOT NULL
+        AND I.TASK_ID_ = T.ID_
+        AND T.ASSIGNEE_ IS NULL
+        AND TYPE_ = 'candidate'
+        AND I.GROUP_ID_ = R.ROLE_ID
+        )U
+        ) I ON A.ID_ = I.TASK_ID_
+        where
+        1=1
+        <if test="userId != null and userId != '' ">
+            and a.ASSIGNEE_ = #{userId,jdbcType=VARCHAR}
+        </if>
+
+        <if test="startUsername != null and startUsername != '' ">
+            and su1.employee_name like concat('%',#{startUsername,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="type != null and type != '' ">
+            and arp.DEPLOYMENT_ID_ = #{type,jdbcType=VARCHAR}
+        </if>
+    </sql>
+    <sql id="doneSql">
+        select
+        A.ID_ AS taskId,
+        A.ASSIGNEE_ AS nextUserid,
+        concat(su.first_name,'-',su.last_name) nextUsername,
+        hp.START_USER_ID_ initor,
+        concat(su1.first_name,'-',su1.last_name) initorName,
+        aht.PROC_INST_ID_ instanceId,
+        hp.BUSINESS_KEY_ businessKey,
+        arp.KEY_,
+        A.NAME_ AS taskName,
+        hp.NAME_ billName,
+        a.SUSPENSION_STATE_,-- 是否挂起
+        case when isnull(hp.END_TIME_ ) then
+        case when a.SUSPENSION_STATE_=2 then 2 else 1 end
+        else 9 end status,
+        date_format(A.CREATE_TIME_, '%Y-%m-%d %H:%i:%s') AS arriveTime,
+        date_format(hp.START_TIME_, '%Y-%m-%d %H:%i:%s') AS startTime,
+        date_format(hp.END_TIME_, '%Y-%m-%d %H:%i:%s') AS endTime,
+        case when isnull(hp.END_TIME_) then
+        CONCAT(
+        FLOOR(
+        TIMESTAMPDIFF(SECOND,hp.START_TIME_,now()) / 86400
+        ),
+        '天',
+        TIMESTAMPDIFF(HOUR,hp.START_TIME_,now()) % 24,
+        '时',
+        TIMESTAMPDIFF(MINUTE,hp.START_TIME_,now()) % 60,
+        '分'
+        )
+        else
+        CONCAT(
+        FLOOR(
+        TIMESTAMPDIFF(SECOND,hp.START_TIME_,hp.END_TIME_) / 86400
+        ),
+        '天',
+        TIMESTAMPDIFF(HOUR,hp.START_TIME_,hp.END_TIME_) % 24,
+        '时',
+        TIMESTAMPDIFF(MINUTE,hp.START_TIME_,hp.END_TIME_) % 60,
+        '分'
+        )
+        end duration
+        ,null CANDIDATE
+
+        from ACT_HI_TASKINST aht
+        join act_hi_procinst hp on aht.PROC_INST_ID_ = hp.PROC_INST_ID_
+        join act_re_procdef arp on arp.ID_ = aht.PROC_DEF_ID_
+        --join hrms_activiti_bill hac on hp.BUSINESS_KEY_ = hac.id
+        left join act_ru_task a on a.PROC_INST_ID_ = aht.PROC_INST_ID_
+        -- 关联业务表
+        left join bus_user su on a.ASSIGNEE_ = su.id
+        left join bus_user su1 on hp.START_USER_ID_ = su1.id
+        where 1=1
+        <if test="userId != null and userId != '' ">
+            and aht.ASSIGNEE_ = #{userId,jdbcType=VARCHAR}
+        </if>
+
+        <if test="startUsername != null and startUsername != '' ">
+            and su1.employee_name like concat('%',#{startUsername,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="type != null and type != '' ">
+            and arp.DEPLOYMENT_ID_ = #{type,jdbcType=VARCHAR}
+        </if>
+    </sql>
+    <sql id="waitSubmitSql">
+        select a.ID_ AS taskId,
+        a.ASSIGNEE_ nextUserid,
+        concat(su1.first_name,'-',su1.last_name) nextUsername,
+        hab.creator initor,
+        concat(su.first_name,'-',su.last_name) initorName,
+        hab.proinstance_id instanceId,
+        hab.id businessKey,
+        haf.key_,
+        a.NAME_ AS taskName,
+        hab.title billName,
+        null,-- 是否挂起
+        case when hab.status = 1 then 3 when hab.status = 2 then 1 else hab.status end status,
+        date_format(hab.create_time, '%Y-%m-%d %H:%i:%s') AS arriveTime,
+        date_format(hab.create_time, '%Y-%m-%d %H:%i:%s') AS startTime,
+        date_format(hp.END_TIME_, '%Y-%m-%d %H:%i:%s') AS endTime,
+        case when isnull(hp.END_TIME_) then
+        CONCAT(
+        FLOOR(
+        TIMESTAMPDIFF(SECOND,hab.create_time,now()) / 86400
+        ),
+        '天',
+        TIMESTAMPDIFF(HOUR,hab.create_time,now()) % 24,
+        '时',
+        TIMESTAMPDIFF(MINUTE,hab.create_time,now()) % 60,
+        '分'
+        )
+        else
+        CONCAT(
+        FLOOR(
+        TIMESTAMPDIFF(SECOND,hp.START_TIME_,hp.END_TIME_) / 86400
+        ),
+        '天',
+        TIMESTAMPDIFF(HOUR,hp.START_TIME_,hp.END_TIME_) % 24,
+        '时',
+        TIMESTAMPDIFF(MINUTE,hp.START_TIME_,hp.END_TIME_) % 60,
+        '分'
+        ) end duration,
+        null CANDIDATE
+        from hrms_activiti_bill hab
+        join hrms_activiti_form haf on hab.form_id = haf.form_id and hab.key_ = haf.key_
+        left join act_hi_procinst hp on hab.id = hp.BUSINESS_KEY_
+        left join ACT_RU_TASK a on hab.proinstance_id = a.PROC_INST_ID_ and a.ASSIGNEE_!=hab.creator
+        left join bus_user su1 on a.ASSIGNEE_ = su1.id
+        left join bus_user su on hab.creator = su.id
+        where
+        not exists(
+            select 1 from ACT_HI_TASKINST aht join act_hi_procinst hp on aht.PROC_INST_ID_ = hp.PROC_INST_ID_
+            where hp.BUSINESS_KEY_ = hab.id and aht.ASSIGNEE_ = hab.creator
+        )
+        <if test="userId != null and userId != '' ">
+            and hab.creator = #{userId}
+        </if>
+
+        <if test="startUsername != null and startUsername != '' ">
+            and su1.employee_name like concat('%',#{startUsername},'%')
+        </if>
+        <if test="type != null and type != '' ">
+            and haf.proinstance_id = #{type}
+        </if>
+
+    </sql>
+    <sql id="waitSubmitConditionSql">
+        and hab.status = 1
+    </sql>
+    <sql id="runningSqlCondition">
+        and hp.END_TIME_ is null
+    </sql>
+    <sql id="finishedSqlCondition">
+        and hp.END_TIME_ is not null
+    </sql>
+    <sql id="suspendSqlCondition">
+        and hp.END_TIME_ is  null and a.SUSPENSION_STATE_=2
+    </sql>
+
+
+    <select id="myTaskDone" resultType="bht.expense.bpm.use.dto.UserWaitHandTaskDto">
+        select
+        A.ID_ AS taskId,
+        A.ASSIGNEE_ AS nextUserid,
+        concat(su.first_name,'-',su.last_name) nextUsername,
+        hp.START_USER_ID_ initor,
+        concat(su1.first_name,'-',su1.last_name) initorName,
+        aht.PROC_INST_ID_ instanceId,
+        hp.BUSINESS_KEY_ businessKey,
+        arp.KEY_,
+        A.NAME_ AS taskName,
+        hp.NAME_ billName,
+        a.SUSPENSION_STATE_,-- 是否挂起
+        case when isnull(hp.END_TIME_ ) then
+        case when a.SUSPENSION_STATE_=2 then 2 else 1 end
+        else 9 end status,
+        date_format(A.CREATE_TIME_, '%Y-%m-%d %H:%i:%s') AS arriveTime,
+        date_format(hp.START_TIME_, '%Y-%m-%d %H:%i:%s') AS startTime,
+        date_format(hp.END_TIME_, '%Y-%m-%d %H:%i:%s') AS endTime,
+        case when isnull(hp.END_TIME_) then
+        CONCAT(
+        FLOOR(
+        TIMESTAMPDIFF(SECOND,hp.START_TIME_,now()) / 86400
+        ),
+        '天',
+        TIMESTAMPDIFF(HOUR,hp.START_TIME_,now()) % 24,
+        '时',
+        TIMESTAMPDIFF(MINUTE,hp.START_TIME_,now()) % 60,
+        '分'
+        )
+        else
+        CONCAT(
+        FLOOR(
+        TIMESTAMPDIFF(SECOND,hp.START_TIME_,hp.END_TIME_) / 86400
+        ),
+        '天',
+        TIMESTAMPDIFF(HOUR,hp.START_TIME_,hp.END_TIME_) % 24,
+        '时',
+        TIMESTAMPDIFF(MINUTE,hp.START_TIME_,hp.END_TIME_) % 60,
+        '分'
+        )
+        end duration
+        ,null CANDIDATE
+
+        from ACT_HI_TASKINST aht
+        join act_hi_procinst hp on aht.PROC_INST_ID_ = hp.PROC_INST_ID_
+        join act_re_procdef arp on arp.ID_ = aht.PROC_DEF_ID_
+        join bus_activiti_bill hac on hp.BUSINESS_KEY_ = hac.business_id
+        left join act_ru_task a on a.PROC_INST_ID_ = aht.PROC_INST_ID_
+        -- 关联业务表
+        left join bus_user su on a.ASSIGNEE_ = su.id
+        left join bus_user su1 on hp.START_USER_ID_ = su1.id
+        <where>
+            <if test="userId != null and userId != '' ">
+                and aht.ASSIGNEE_ = #{userId,jdbcType=VARCHAR}
+            </if>
+
+            <if test="startUsername != null and startUsername != '' ">
+                and su1.first_name like concat('%',#{startUsername,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="type != null and type != '' ">
+                and arp.DEPLOYMENT_ID_ = #{type,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="BaseResultMap" type="bht.expense.bpm.use.dto.UserHistoricTaskDto">
+        <!--@mbg.generated-->
+        <result column="nextUserid" jdbcType="VARCHAR" property="nextUserid"/>
+        <result column="nextUsername" jdbcType="VARCHAR" property="nextUsername"/>
+        <result column="stepName" jdbcType="VARCHAR" property="stepName"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="startTime" jdbcType="VARCHAR" property="startTime"/>
+        <result column="arriveTime" jdbcType="VARCHAR" property="arriveTime"/>
+        <result column="endTime" jdbcType="VARCHAR" property="endTime"/>
+        <result column="duration" jdbcType="VARCHAR" property="duration"/>
+        <result column="comment" jdbcType="VARCHAR" property="comment"/>
+        <result column="approve" jdbcType="VARCHAR" property="approve"/>
+<!--        <collection property="files" ofType="string" javaType="list">-->
+<!--            <result column="file_id" jdbcType="VARCHAR"/>-->
+<!--        </collection>-->
+    </resultMap>
+    <select id="selectHistoricTasks" resultMap="BaseResultMap">
+        select
+            aht.ASSIGNEE_                                     nextUserid,
+            CONCAT(su.first_name,'-',su.last_name)                                  nextUsername,
+            aht.NAME_                                         stepName,
+            date_format(ahp.START_TIME_, '%Y-%m-%d %H:%i:%s') startTime,
+            date_format(aht.START_TIME_, '%Y-%m-%d %H:%i:%s') arriveTime,
+            date_format(aht.END_TIME_, '%Y-%m-%d %H:%i:%s')   endTime,
+            case
+                when isnull(aht.END_TIME_)
+                    then 1
+                else 9
+            end                                               status,
+            case
+                when isnull(aht.DURATION_)
+                    then null
+                else CONCAT(
+                        FLOOR(
+                                aht.DURATION_ / 86400 / 1000
+                            ),
+                        '天',
+                        FLOOR(aht.DURATION_ / 1000 / 3600 % 24),
+                        '时',
+                        round(aht.DURATION_ / 1000 / 60 % 60, 2),
+                        '分'
+                    )
+            end                                               duration,
+
+            ahc.MESSAGE_                                      comment,
+            case
+                when isnull(ahd.TEXT_)
+                    then '等待'
+                else case when ahd.TEXT_ in ('pass', '通过') then '通过' else '驳回' end
+            end                                               approve
+        from act_hi_procinst ahp
+        join      act_hi_taskinst aht on ahp.PROC_INST_ID_ = aht.PROC_INST_ID_
+        join      act_hi_actinst aha on aht.ID_ = aha.TASK_ID_
+        left join act_hi_detail ahd on aha.ID_ = ahd.ACT_INST_ID_
+        left join act_hi_comment ahc on aht.ID_ = ahc.TASK_ID_ and ahc.TYPE_ = 'comment'
+        left join bus_user su on aht.ASSIGNEE_ = su.id
+        where ahp.BUSINESS_KEY_ = #{businessId,jdbcType=VARCHAR}
+        order by aht.START_TIME_
+    </select>
+
+</mapper>

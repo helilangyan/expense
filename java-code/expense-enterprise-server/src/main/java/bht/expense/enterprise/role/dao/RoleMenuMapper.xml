@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.enterprise.role.dao.RoleMenuMapper">
+
+    <delete id="deleteByRoleId">
+        delete from bus_enterprise_role_menu where role_id = #{roleId}
+    </delete>
+
+    <select id="findByRoleId" resultType="bht.expense.enterprise.role.dto.RoleMenuDto">
+        SELECT t1.id as menu_id , t1.menu_name , t1.parent_id , t2.id role_menu_id
+        from bus_enterprise_menu t1 LEFT JOIN bus_enterprise_role_menu t2 on t1.id = t2.menu_id
+        WHERE t2.role_id = #{roleId}
+    </select>
+
+</mapper>

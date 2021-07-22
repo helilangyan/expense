@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bht.expense.detail.apply.travel.dao.ApplyTravelMapper">
+
+    <delete id="delete">
+        delete from bus_apply_travel where id = #{id}
+    </delete>
+
+    <select id="findByUserIdAndEnterpriseId" resultType="bht.expense.detail.apply.borrow.entity.ApplyBorrowEntity">
+        select  t1.* , t2.status
+        from bus_apply_travel t1 left join bus_activiti_bill t2 on t1.id = t2.business_id
+        where t1.user_id = #{userId} and t1.enterprise_id = #{enterpriseId}
+        order by t1.create_time
+    </select>
+
+</mapper>
+

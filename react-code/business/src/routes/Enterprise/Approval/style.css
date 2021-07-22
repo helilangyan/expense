@@ -1,0 +1,64 @@
+/* .heardBox{
+    width: 100%;
+    background-color: #fff;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px;
+
+}
+
+.contentBox{
+    padding: 15px;
+}
+
+.content{
+    background-color: #fff;
+    padding: 10px;
+} */
+
+.content .ant-tabs-content{
+    position: relative;
+}
+
+.panelWrapper{
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-left: 1px solid #ccc;
+    height: 100%;
+    width: 260px;
+    padding: 10px;
+}
+
+.panelHeader {
+    padding: 15px;
+    padding-bottom: 5px;
+    font-size: 120%;
+    font-weight: bolder;
+}
+.panelForm {
+    padding: 15px;
+
+}
+.panelForm .addBox {
+    border: 1px solid #f2f2f2;
+    width: 100%;
+    height: 150px;
+    overflow-y: auto;
+    margin: 0 10px;
+
+}
+.panelForm .addBox .el-tag {
+    margin: 10px;
+}
+.panelForm .addBtn{
+    text-align: right;
+}
+
+.applyList{
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    height: 100px;
+    overflow-y: auto;
+}

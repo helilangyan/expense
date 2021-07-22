@@ -1,0 +1,203 @@
+/* .headBox{
+    width: 100%;
+    background-color: #fff;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+} */
+.contentBox{
+    max-height: 800px;
+    position: relative;
+    height: calc(100vh - 110px);
+    overflow-x: scroll;
+    padding-right: 15px;
+}
+.contentBox .timeBox{
+    font-weight: 600;
+    line-height: 30px;
+}
+.contentBox .ant-list-item{
+    padding:0;
+    border: none;
+}
+/* 去掉列表item的边框 */
+.contentBox .ant-list-split.ant-list-something-after-last-item .ant-spin-container > .ant-list-items > .ant-list-item:last-child{
+    border: none;
+}
+/* 报销申请列表 */
+.contentList{
+    width: 100%;
+}
+.applyItem{
+    width: 100%;
+    background-color: #fff;
+    padding: 15px 15px 0;
+    box-sizing: border-box;
+    transition: ease 2s;
+    margin-bottom: 10px;
+    height: 80px;
+}
+.applyItem h2.tit{
+    font-size: 16px;
+    margin:0;
+}
+.applyItem p.con {
+    color: #777;
+    height: 26px;
+    line-height: 26px;
+}
+.applyItem p.con span{
+    color: #333;
+}
+.applyItem .money{
+    font-size: 16px;
+}
+.applyItem .del{
+    color: #D81E06;
+    font-size: 20px;
+    line-height: 23px;
+    opacity: 0;
+    visibility: hidden;
+}
+.applyItem:hover .del{
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+.costList{
+    margin-top: 4px;
+}
+.costItem{
+    padding: 10px 0;
+    border-bottom: 1px solid #f9f9f9;
+}
+.costItem:first-child{
+    padding-top: 0;
+}
+.costItem .count{
+    font-weight: 600;
+    font-size: 16;
+    text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+.contentBox{
+    padding: 20px;
+} */
+
+/* .content{
+    background-color: #fff;
+    padding: 10px;
+    height: calc(100vh - 130px);
+} */
+
+/* .listItem{
+    background-color: #fff;
+    padding: 20px 10px;
+    box-sizing: border-box;
+} */
+/* 选择类型弹窗 */
+.choiceItem{
+    text-align: center;
+}
+.choiceItem button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+}
+.choiceItem span{
+    font-size: 24px;
+}
+.choiceItem p {
+    margin-top: 20px;
+}
+/* 审批节点 */
+.programBox{
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 20px 10px;
+}
+/* 添加数据的列表 */
+/*
+
+.costItem .ant-col{
+    height: 20px;
+    line-height: 20px;
+}
+
+.costItem .num{
+    text-align: center;
+}
+.costItem .title{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+} */
+
+.recordList{
+    padding: 5px 0;
+}
+.recordList span{
+    margin-right: 10px;
+}
+.recordList span.time{
+    color:#999;
+}
+.recordList span.approve{
+    color:#1890FF;
+}
+.recordList span.username{
+    background-color:#F7F8FA;
+    padding:3px 7px;
+    border-radius: 3px;
+}
+.recordList span:last-child{
+    margin-right: 0;
+}
+
+.promise{
+    width: 100%;
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+}
+.promise .ant-checkbox-wrapper{
+    color: #ff0000;
+}
+
+/* 表格内胶囊状态 */
+.rnd-pl{
+    background-color: #CD00FF;
+    border-color: #CD00FF;
+    color:#fff;
+    border-radius: 25px;
+    height: 22px;
+    line-height: 22px;
+    width: 60px;
+    font-size: 12px;
+    text-align: center;
+}
+

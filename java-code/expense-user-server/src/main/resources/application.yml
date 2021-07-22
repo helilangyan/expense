@@ -1,0 +1,79 @@
+server:
+  port: 9002
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  max-http-header-size: 51200
+
+spring:
+  jackson:
+    time-zone: GMT+8
+  aop:
+    auto: true
+  application:
+    name: expense-user-server
+  datasource:
+    username: bht
+    password: yaoyiwen
+    url: jdbc:mysql://rm-bp1px3zf6kodk1817eo.mysql.rds.aliyuncs.com:3306/expense?userSSL=true&useUnicode=true&characterEncoding=UTF8
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      connection-timeout: 30000
+      maximum-pool-size: 20
+      max-lifetime: 1800000
+      minimum-idle: 5
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        server-addr: ${spring.cloud.nacos.server-addr}
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+mybatis-plus:
+  mapper-locations: classpath:bht/expense/**/*Mapper.xml
+  type-aliases-package: bht.expense
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+file-upload:
+  upload-type: oss #
+  filePathPrefix: d:/upload
+  endpoint: http://oss-cn-hangzhou.aliyuncs.com
+  access-key-id: LTAI4G6S891dt7CN1rSuB6tk
+  access-key-secret: DFCVv35du9R6MrPtCKu4XfSm3kF5Rj
+  bucket-name: bht-expense
+
+# token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌秘钥
+  secret: (EMOK:)_$^11244^%$_(IS:)_@@++--(COOL:)_++++_.sds_(GUY:)
+  # 令牌有效期
+  expireTime: 3600000
+
+logging:
+  config: classpath:logback-spring.xml

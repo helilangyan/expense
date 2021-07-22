@@ -1,0 +1,60 @@
+/* .contentBox{
+    max-height: 800px;
+    position: relative;
+    height: calc(100vh - 110px);
+    overflow-x: scroll;
+    padding-right: 15px;
+} */
+.titleStats .tit{
+    color:#666
+}
+.titleStats .count{
+    font-size: 18px;
+    font-weight: 600;
+}
+.content{
+    background-color: #fff;
+    padding: 10px 20px;
+}
+/* .Btn{
+    height: 25px;
+    line-height: 25px;
+    width: 70px;
+    text-align: center;
+    color:#fff;
+}
+.rnd-pl{
+    background-color: #0CA60B;
+    border-color: #0CA60B;
+} */
+
+.reportType{
+    margin:30px 10px;
+    text-align: center;
+}
+.reportType .ant-col{
+    cursor: pointer;
+}
+.reportType .anticon{
+    font-size: 46px;
+    color: #515151;
+}
+.reportType p{
+    height: 30px;
+    line-height: 30px;
+}
+.headBox .backBtn{
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.headBox .customized h4{
+    font-weight: 600;
+    height: 14px;
+    line-height: 19px;
+} 
+.headBox .customized p{
+    height: 30px;
+    line-height: 30px;
+}
